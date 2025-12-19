@@ -76,7 +76,14 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-// Logout button
-window.logout = () => {
-  signOut(auth).then(() => window.location.href = "admin-login.html");
-};
+<script>
+  document.getElementById("logoutBtn").addEventListener("click", function () {
+
+    // Optional: clear login/session data
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Redirect to donation page
+    window.location.href = "donate.html";
+  });
+</script>
