@@ -6,15 +6,15 @@
   <title>Donate | KFGC Media App</title>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles/general-styles.css" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="styles/donate.css" />
+  <link rel="stylesheet" href="general-styles.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="donate.css" />
 
   <!-- Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
   <!-- Favicon -->
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
@@ -24,7 +24,7 @@
     <i class="fas fa-arrow-left"></i> Back
   </a>
   <div class="logo">
-    <img src="images/kfgc.jpg" alt="Kirinda Full Gospel Church Logo" />
+    <img src="kfgc.jpg" alt="Kirinda Full Gospel Church Logo" />
   </div>
 </header>
 
@@ -79,7 +79,7 @@
           <div class="payment-card">
             <input type="radio" name="payment-method" value="momo" id="momo" required hidden />
             <label for="momo">
-              <img src="images/momo.jpg" alt="Mobile Money" />
+              <img src="momo.jpg" alt="Mobile Money" />
               <span>Mobile Money</span>
             </label>
           </div>
@@ -87,7 +87,7 @@
           <div class="payment-card">
             <input type="radio" name="payment-method" value="card" id="card" required hidden />
             <label for="card">
-              <img src="images/credit-card.jpg" alt="Credit Card" />
+              <img src="credit-card.jpg" alt="Credit Card" />
               <span>Card</span>
             </label>
           </div>
@@ -95,7 +95,7 @@
           <div class="payment-card">
             <input type="radio" name="payment-method" value="paypal" id="paypal" required hidden />
             <label for="paypal">
-              <img src="images/paypal.jpg" alt="PayPal" />
+              <img src="paypal.jpg" alt="PayPal" />
               <span>PayPal</span>
             </label>
           </div>
@@ -112,7 +112,7 @@
   <!-- QR Code -->
   <section class="qr-section">
     <h3>Scan to Donate</h3>
-    <img src="images/qr.jpg" alt="Donation QR Code" class="qr-image" />
+    <img src="qr.jpg" alt="Donation QR Code" class="qr-image" />
     <p>Scan the QR code using Mobile Money or banking apps</p>
   </section>
 
@@ -146,8 +146,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
 <script src="https://checkout.flutterwave.com/v3.js"></script>
-<script src="scripts/donate.js" defer></script>
-<script src="scripts/script.js" defer></script>
+<script src="donate.js" defer></script>
+<script src="script.js" defer></script>
 
 </body>
 </html>
