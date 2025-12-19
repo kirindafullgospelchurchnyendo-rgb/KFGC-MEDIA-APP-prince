@@ -4,14 +4,14 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
 
 // Firebase config (same as donate.js)
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_FIREBASE_PROJECT.firebaseapp.com",
-  projectId: "YOUR_FIREBASE_PROJECT_ID",
-  storageBucket: "YOUR_FIREBASE_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+const firebaseConfig = {
+  apiKey: "AIzaSyCPWH5BCSFp3Qqs_-JVfqDkUCEfhyg4VX4",
+  authDomain: "kfgc-media-app.firebaseapp.com",
+  projectId: "kfgc-media-app",
+  storageBucket: "kfgc-media-app.firebasestorage.app",
+  messagingSenderId: "203397572574",
+  appId: "1:203397572574:web:db903da199482fd6cedf4f"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
