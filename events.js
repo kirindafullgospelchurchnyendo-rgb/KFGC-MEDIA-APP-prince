@@ -97,20 +97,27 @@ submitBtn.addEventListener('click', () => {
 });
 
 // --- FullCalendar Integration ---
-const calendarEl = document.getElementById('calendar');
-const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    events: events.map(ev => ({ title: ev.title, start: ev.date, extendedProps: { category: ev.category, image: ev.image } })),
-    eventClick: function(info) {
-        modal.style.display = 'flex';
-        modal.querySelector('h3').textContent = "Register for: " + info.event.title;
-    },
-    eventDidMount: function(info) {
-        const cat = info.event.extendedProps.category;
-        if(cat === 'Prayer') info.el.style.backgroundColor = '#4b7bec';
-        if(cat === 'Worship') info.el.style.backgroundColor = '#28a745';
-        if(cat === 'Youth') info.el.style.backgroundColor = '#ff9800';
-    }
-});
-calendar.render();
 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar');
+
+  if (!calendarEl) {
+    console.error("Calendar element not found");
+    return;
+  }
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 'auto',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,listWeek'
+    },
+    events: []
+  });
+
+  calendar.render();
+});
