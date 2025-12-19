@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Profile Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="general-styles.css">
+    <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<!-- Main script -->
+  <script src="script.js" defer></script>
+            <style>
+    
+        body {
+            margin-bottom: 100px;
+            background-color: #f8f9fa;
+            
+        }
+        .profile-header {
+            margin-top: 60px;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 70px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 20px;
+        }
+        .profile-picture {
+            padding: 1px 1px 5px 5px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #007bff;
+            color: white;
+
+        }
+        .section-title {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+        .profile-edit-form {
+            display: none;
+        }
+    .back-button {
+            position: absolute;
+            left: 6px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    .hidden-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 16px;
+            color: white;
+            background: green;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    .prayer-btn {
+    background-color: #e66922;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.prayer-btn:hover {
+    background-color: #d35400;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+ <!-- Header -->
+    <header class="header">
+        <a href="javascript:history.back()" class="back-button">← Back</a>
+        <div class="logo">
+            <img src="kfgc.jpg" alt="Church Logo">
+       </div>
+      
+    </header>
+
+
+<div class="container mt-4">
+    <!-- Profile Header -->
+    <div class="profile-header">
+    <img src="image1.jpg" alt="Profile Picture" class="profile-picture">
+        <h1>MY PROFILE</h1>
+        <h2 id="profile-name">kirinda full gospel church</h2>
+        <p id="profile-joined">Member since: January 2015</p>
+     <a href="settings.html"><button class="btn btn-light btn-sm" id="edit-profile-btn">Edit Profile</button>
+       
+    </div>
+
+    
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mt-4" id="profileTabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#my-activities">My Activities</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#donations">Donations</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#prayer-requests">Prayer Requests</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#groups">Groups & Ministries</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content mt-3">
+        <!-- My Activities -->
+        <div id="my-activities" class="tab-pane fade show active">
+            <h5 class="section-title">Church Activities</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Attended Sunday Service - Feb 25, 2025</li>
+                <li class="list-group-item">Joined Worship Team - Jan 2025</li>
+                <li class="list-group-item">Volunteered at Outreach Program - Dec 2024</li>
+            </ul>
+        </div>
+
+        <!-- Donations & Payments -->
+        <div id="donations" class="tab-pane fade">
+            <h5 class="section-title">Donation History</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Feb 20, 2025</td>
+                        <td>UGX505000</td>
+                        <td>Tithe</td>
+                    </tr>
+                    <tr>
+                        <td>Jan 15, 2025</td>
+                        <td>UG310000</td>
+                        <td>Offering</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+             <a href="donate.html" class="btn btn-primary">Make a Donation</a>
+       
+        </div>
+
+        <!-- Prayer Requests -->
+        <div id="prayer-requests" class="tab-pane fade">
+            <h5 class="section-title">My Prayer Requests</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Pray for my family’s health and well-being.</li>
+                <li class="list-group-item">Seeking guidance in my career decisions.</li>
+            </ul>
+            <a href="services.html#prayer-request-form" class="btn prayer-btn">Submit Your Prayer Request</a>
+        </div>
+        </div>    
+        <!-- Groups & Ministries -->
+        <div id="groups" class="tab-pane fade">
+            <h5 class="section-title">My Ministries</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Worship Team - Member since Jan 2025</li>
+                <li class="list-group-item">Youth Fellowship - Active Member</li>
+            </ul>
+            <button class="btn btn-primary mt-2">Join a Ministry</button>
+        </div>
+         <h5>**************</h5>
+    </div>
+
+<!-- Footer -->
+     <footer class="footer">
+         <p>Follow us on 
+            <a href="https://whatsapp.com/channel/0029VaoQRhnHwXb9FX0Ub503">WhatsApp</a>|
+            <a href="https://www.youtube.com/@KIRINDAFULLGOSPELCHURCHNYENDO">Youtube</a>|
+            <a href="https://www.facebook.com/profile.php?id=61579066273777">Facebook</a> | 
+            <a href="https://t.me/+wJRnn7SQvehhZTFk">Telegram</a> | 
+             <a href="https://www.tiktok.com/@kirindafullgospel">Tiktok</a>|
+           
+        </p>
+         <p>&copy; 2025 KFGC MEDIA APP. All Rights Reserved.</p>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle the edit profile form
+    const editProfileBtn = document.getElementById('edit-profile-btn');
+    const profileEditForm = document.querySelector('.profile-edit-form');
+    const cancelEditBtn = document.getElementById('cancel-edit-btn');
+
+    editProfileBtn.addEventListener('click', () => {
+        profileEditForm.style.display = 'block';
+        editProfileBtn.style.display = 'none';
+    });
+
+    cancelEditBtn.addEventListener('click', () => {
+        profileEditForm.style.display = 'none';
+        editProfileBtn.style.display = 'inline-block';
+    });
+</script>
+</body>
+</html>

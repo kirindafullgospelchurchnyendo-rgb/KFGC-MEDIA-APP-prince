@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events - KFGC MEDIA APP</title>
+<link rel="stylesheet" href="general-styles.css">
+<link rel="stylesheet" href="events.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<!-- Main script -->
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+    <div class="logo">
+        <img src="kfgc.jpg" alt="Church Logo">
+    </div>
+   
+   
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h2>Join Our Upcoming Events!</h2>
+</section>
+
+<!-- Events Section -->
+<section class="events">
+    <h2>Upcoming Events</h2>
+
+    <!-- Search, Filter & Sort -->
+    <div class="search-filter">
+        <input type="text" id="searchInput" placeholder="Search events...">
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="Prayer">Prayer</option>
+            <option value="Worship">Worship</option>
+            <option value="Youth">Youth</option>
+        </select>
+        <button class="btn sort-btn" id="sortBtn">Sort by Date ↑</button>
+    </div>
+
+    <!-- Event Cards -->
+    <div class="event-cards" id="eventCards"></div>
+
+    <!-- Calendar -->
+    <div id="calendar"></div>
+</section>
+
+<!-- Registration Modal -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h3>Register for Event</h3>
+        <input type="text" id="nameInput" placeholder="Your Name">
+        <input type="email" id="emailInput" placeholder="Your Email">
+        <button class="btn" id="submitRegistration">Submit</button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>
+        Follow us on 
+        <a href="https://whatsapp.com/channel/0029VaoQRhnHwXb9FX0Ub503">WhatsApp</a> |
+        <a href="https://www.youtube.com/@KIRINDAFULLGOSPELCHURCHNYENDO">YouTube</a> |
+         <a href="https://www.facebook.com/profile.php?id=61579066273777">Facebook</a> | 
+        <a href="https://t.me/+wJRnn7SQvehhZTFk">Telegram</a> |
+        <a href="https://www.tiktok.com/@kirindafullgospel">TikTok</a>
+    </p>
+    <p>&copy; 2025 KFGC MEDIA APP. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="events.js"></script>
+</body>
+</html>
