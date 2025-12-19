@@ -72,3 +72,32 @@ table th, table td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #d9a441, #b8892e);
+  color: #08203a;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.logout-btn i {
+  font-size: 16px;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #e4b55b, #c9983a);
+}
+
+.logout-btn:active {
+  transform: scale(0.97);
+}
