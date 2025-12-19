@@ -19,43 +19,6 @@
   </div>
 
   <!-- Firebase & Auth -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "YOUR_FIREBASE_API_KEY",
-      authDomain: "YOUR_FIREBASE_PROJECT.firebaseapp.com",
-      projectId: "YOUR_FIREBASE_PROJECT_ID",
-      storageBucket: "YOUR_FIREBASE_PROJECT.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const loginForm = document.getElementById("adminLoginForm");
-    const loginError = document.getElementById("loginError");
-
-    // Redirect if already logged in
-    onAuthStateChanged(auth, user => {
-      if (user) window.location.href = "dashboard.html";
-    });
-
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("adminEmail").value;
-      const password = document.getElementById("adminPassword").value;
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        // Redirect to dashboard
-        window.location.href = "dashboard.html";
-      } catch (error) {
-        loginError.textContent = "Invalid email or password.";
-      }
-    });
-  </script>
+  <script type="module" src="admin.js"></script>
 </body>
 </html>
