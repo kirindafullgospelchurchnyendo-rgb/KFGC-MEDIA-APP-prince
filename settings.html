@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>KFGC Media App — Settings</title>
+<!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+ <link rel="stylesheet" href="styles.css">
+    <!-- Shared JS -->
+    <script defer src="script.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body class="font-md"> <!-- default font size: medium -->
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" role="banner" aria-label="Settings header">
+      <img class="logo" src="kfgc.jpg" alt="KFGC Logo (replace logo.png)" />
+    </div>
+
+    <div class="title">Settings</div>
+
+        <div class="header-actions">
+      <button id="theme-toggle" class="theme-btn" aria-pressed="false" title="Toggle dark mode">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>
+         </div>
+  </header>
+
+  <!-- ========== MAIN CONTAINER ========== -->
+  <main class="container" role="main">
+
+    <!-- GENERAL -->
+    <div class="section-label">General</div>
+
+    <div class="card" id="card-live" title="Check live streaming status">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-broadcast-tower"></i></div>
+        <div style="min-width:0">
+          <div class="card-title">Live Service</div>
+          <div class="card-sub" id="live-sub">No live service detected</div>
+        </div>
+      </div>
+      <div class="card-right">
+        <button id="live-check" class="toggle" aria-pressed="false"><i class="fa fa-check"></i> Check now</button>
+        <div class="badge" id="live-badge" style="display:none">LIVE</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openShare()" role="button" aria-label="Share app card">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-share-nodes"></i></div>
+        <div>
+          <div class="card-title">Share App</div>
+          <div class="card-sub">Invite friends to KFGC Media App</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+
+    <div class="card" onclick="rateApp()" role="button" aria-label="Rate app card">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-star"></i></div>
+        <div>
+          <div class="card-title">Rate App</div>
+          <div class="card-sub">Leave a rating to support us</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="section-label">Appearance</div>
+
+    <div class="card" id="card-font">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-font"></i></div>
+        <div>
+          <div class="card-title">Font Size</div>
+          <div class="card-sub">Adjust readability across the app</div>
+        </div>
+      </div>
+
+      <div class="card-right">
+        <div class="size-options" role="tablist" aria-label="Font sizes">
+          <button class="size-btn" data-size="sm" aria-pressed="false">A</button>
+          <button class="size-btn active" data-size="md" aria-pressed="true">A</button>
+          <button class="size-btn" data-size="lg" aria-pressed="false">A+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div class="section-label">Account</div>
+
+    <div class="card" onclick="openProfile()" role="button">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-user"></i></div>
+        <div>
+          <div class="card-title">Profile</div>
+          <div class="card-sub">Name, email, phone</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+
+    <div class="card" onclick="openChangePassword()" role="button">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-lock"></i></div>
+        <div>
+          <div class="card-title">Change Password</div>
+          <div class="card-sub">Update your login password</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+
+    <div class="card" onclick="openPrivacy()" role="button">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-shield-halved"></i></div>
+        <div>
+          <div class="card-title">Privacy & Data</div>
+          <div class="card-sub">Manage collected data & storage</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+
+    <!-- SUPPORT / ABOUT -->
+    <div class="section-label">Support</div>
+
+    <div class="card" onclick="openSupport()" role="button">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-headset"></i></div>
+        <div>
+          <div class="card-title">Contact Support</div>
+          <div class="card-sub">Message the KFGC media team</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+
+    <div class="card" onclick="openAbout()" role="button">
+      <div class="card-left">
+        <div class="icon-wrap"><i class="fa fa-info-circle"></i></div>
+        <div>
+          <div class="card-title">About</div>
+          <div class="card-sub">Version info, licenses, developer</div>
+        </div>
+      </div>
+      <div class="card-right"><i class="fa fa-angle-right"></i></div>
+    </div>
+<h1>*****************</h1>
+  </main>
+
+  <!-- ========== FOOTER NAV ========== -->
+  <nav class="footer" role="navigation" aria-label="Footer navigation">
+    <a class="nav-link" href="index.html" title="Home">
+      <i class="fa fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a class="nav-link" href="events.html" title="Events">
+      <i class="fa fa-calendar-days"></i>
+      <span>Events</span>
+    </a>
+    <a class="nav-link" href="sermons.html" title="Live">
+      <i class="fa fa-circle-play"></i>
+      <span>Live</span>
+    </a>
+    <a class="nav-link active" href="settings.html" title="Settings">
+      <i class="fa fa-gear"></i>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <!-- ========== MODALS (hidden by default) ========== -->
+  <div id="modal-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title">Modal</h3>
+      <div id="modal-content">
+        <!-- dynamic content inserted here -->
+      </div>
+      <div class="actions" style="margin-top:12px;">
+        <button class="btn ghost" onclick="closeModal()">Close</button>
+        <button id="modal-primary" class="btn primary" onclick="modalPrimaryAction()">OK</button>
+      </div>
+    </div>
+  </div>
+</body>
+        </html>
+            
