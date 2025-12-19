@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — KFGC</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="auth-body">
+
+  <div class="auth-card">
+    <h2>KFGC Admin Login</h2>
+    <form id="adminLoginForm">
+      <input type="email" id="adminEmail" placeholder="Admin Email" required />
+      <input type="password" id="adminPassword" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <p id="loginError" class="error"></p>
+    </form>
+  </div>
+
+  <!-- Firebase & Auth -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_FIREBASE_API_KEY",
+      authDomain: "YOUR_FIREBASE_PROJECT.firebaseapp.com",
+      projectId: "YOUR_FIREBASE_PROJECT_ID",
+      storageBucket: "YOUR_FIREBASE_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById("adminLoginForm");
+    const loginError = document.getElementById("loginError");
+
+    // Redirect if already logged in
+    onAuthStateChanged(auth, user => {
+      if (user) window.location.href = "dashboard.html";
+    });
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("adminEmail").value;
+      const password = document.getElementById("adminPassword").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // Redirect to dashboard
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        loginError.textContent = "Invalid email or password.";
+      }
+    });
+  </script>
+</body>
+</html>

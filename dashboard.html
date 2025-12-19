@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — KFGC</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<header class="dash-header">
+  <h1>KFGC Admin Dashboard</h1>
+  <button onclick="logout()">Logout</button>
+</header>
+
+<section class="stats">
+  <div class="stat-card">
+    <h3>Total Donations</h3>
+    <p id="totalAmount">UGX 0</p>
+  </div>
+  <div class="stat-card">
+    <h3>Number of Donors</h3>
+    <p id="totalDonors">0</p>
+  </div>
+  <div class="stat-card">
+    <h3>Last Donation</h3>
+    <p id="lastDonation">—</p>
+  </div>
+</section>
+
+<section class="table-section">
+  <h2>Donations</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="donationsTable"></tbody>
+  </table>
+</section>
+
+<script type="module" src="dashboard.js"></script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_FIREBASE_PROJECT.firebaseapp.com",
+    projectId: "YOUR_FIREBASE_PROJECT_ID",
+    storageBucket: "YOUR_FIREBASE_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // Redirect to login if not authenticated
+  onAuthStateChanged(auth, user => {
+    if (!user) window.location.href = "admin-login.html";
+  });
+
+  // Logout function
+  window.logout = () => {
+    signOut(auth).then(() => {
+      window.location.href = "admin-login.html";
+    });
+  };
+
+  // DOM elements
+  const totalAmountEl = document.getElementById("totalAmount");
+  const totalDonorsEl = document.getElementById("totalDonors");
+  const lastDonationEl = document.getElementById("lastDonation");
+  const donationsTable = document.getElementById("donationsTable");
+
+  // Real-time donation updates
+  const donationsCol = collection(db, "donations");
+  const donationsQuery = query(donationsCol, orderBy("timestamp", "desc"));
+
+  onSnapshot(donationsQuery, snapshot => {
+    let totalAmount = 0;
+    const donorsSet = new Set();
+    donationsTable.innerHTML = "";
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      totalAmount += data.amount || 0;
+      if (data.name) donorsSet.add(data.name);
+
+      const tr = document.createElement("tr");
+      const date = data.timestamp?.toDate?.()?.toLocaleString() || "—";
+      tr.innerHTML = `
+        <td>${data.name || "Anonymous"}</td>
+        <td>${data.email || "—"}</td>
+        <td>UGX ${Number(data.amount).toLocaleString()}</td>
+        <td>${data.donationType || "—"}</td>
+        <td>${date}</td>
+      `;
+      donationsTable.appendChild(tr);
+    });
+
+    totalAmountEl.textContent = `UGX ${totalAmount.toLocaleString()}`;
+    totalDonorsEl.textContent = donorsSet.size;
+
+    const lastDonationDoc = snapshot.docs[0];
+    if (lastDonationDoc) {
+      const last = lastDonationDoc.data();
+      lastDonationEl.textContent = `${last.name || "Anonymous"} — UGX ${Number(last.amount).toLocaleString()}`;
+    } else {
+      lastDonationEl.textContent = "—";
+    }
+  });
+</script>
+</body>
+</html>
