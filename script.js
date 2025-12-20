@@ -143,7 +143,7 @@ function shareApp() {
   const shareData = {
     title: 'Join Kirinda Full Gospel Church App',
     text: 'Join us for faith, fellowship, and growth. Download the KFGC app now!',
-    url: 'https://www.kfgcapp.com'
+    url: 'https://kirindafullgospelchurchnyendo-rgb.github.io/KFGC-MEDIA-APP-prince/'
   };
   if (navigator.share) {
     navigator.share(shareData).catch(() => {});
@@ -433,11 +433,11 @@ const iframe = document.getElementById("youtubePlayer");
 // Check every 60 seconds
 setInterval(() => {
   // Try live stream first
-  iframe.src = `https://www.youtube.com/embed/live_stream?channel=${channelId}`;
+  iframe.src = `https://www.youtube.com/embed/live_stream?channel=${UCbg2Da3jAPU13EZd6WyKjRw}`;
   
   // If not live, fallback after 5 seconds
   setTimeout(() => {
-    iframe.src = `https://www.youtube.com/embed?listType=playlist&list=UU${channelId.substring(2)}`;
+    iframe.src = `https://www.youtube.com/embed?listType=playlist&list=UU${channelid.substring(2)}`;
   }, 5000);
 }, 60000);
 
