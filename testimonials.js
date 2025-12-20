@@ -35,7 +35,9 @@ form.addEventListener("submit", async (e) => {
   let imageURL = "";
 
   try {
+    // ================================
     // Upload image to Cloudinary
+    // ================================
     if (imageFile) {
       const fd = new FormData();
       fd.append("file", imageFile);
@@ -47,13 +49,27 @@ form.addEventListener("submit", async (e) => {
       );
 
       const img = await res.json();
+
+      if (!img.secure_url) {
+        throw new Error("Image upload failed");
+      }
+
       imageURL = img.secure_url;
     }
 
+    // ================================
     // Save testimony to Google Sheets
+    // ================================
     await fetch(API_URL, {
       method: "POST",
-      body: JSON.stringify({ name, message, imageURL })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        message: message,
+        imageURL: imageURL
+      })
     });
 
     alert("🙏 Testimony submitted successfully");
@@ -67,20 +83,31 @@ form.addEventListener("submit", async (e) => {
 });
 
 // ================================
-// Load Testimonials (PERSISTENT)
+// Load Testimonials
 // ================================
 async function loadTestimonials() {
+  container.innerHTML = "<p>Loading testimonies...</p>";
+
   const res = await fetch(API_URL);
   const data = await res.json();
+
+  if (!data || !data.length) {
+    container.innerHTML = "<p>No testimonies yet. Be the first 🙏</p>";
+    return;
+  }
 
   container.innerHTML = "";
 
   data.reverse().forEach(t => {
+    const imgSrc = t.imageURL && t.imageURL.trim()
+      ? t.imageURL
+      : "default-user.png";
+
     container.innerHTML += `
       <div class="col-md-4">
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="${t.imageURL || 'default-user.png'}" alt="${t.name}">
+            <img src="${imgSrc}" alt="${t.name}">
             <div>
               <h5>${t.name}</h5>
               <p>Church Member</p>
@@ -95,3 +122,4 @@ async function loadTestimonials() {
 
 // Load on page start
 loadTestimonials();
+
