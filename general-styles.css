@@ -97,7 +97,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: #f8f8ff;
+    background: white;
 }
 
 /* SECTIONS */
@@ -136,7 +136,7 @@ body {
 }
 
 .info-card {
-    background: white;
+    background: Pink;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 3px 7px rgba(0,0,0,0.1);
