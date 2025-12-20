@@ -1,38 +1,17 @@
 // ================================
-// Firebase (Firestore only)
-// ================================
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp,
-  onSnapshot,
-  query,
-  orderBy
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-// 🔴 REPLACE WITH YOUR FIREBASE DETAILS
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// ================================
-// Cloudinary Config (YOUR REAL DATA)
+// Cloudinary Config
 // ================================
 const CLOUD_NAME = "dvnyyq3ru";
 const UPLOAD_PRESET = "xdapq0dq";
 
+// Google Apps Script Web App URL
+const API_URL = "https://script.google.com/macros/s/AKfycbxlPtJuzw6bjTpN8iyh1r1t8dB5gWVJ7uwj7ppCb_i5Y3Z6mRRXhITZdVqdOOaRHVJG/exec";
+
 // ================================
-// Form Elements
+// Elements
 // ================================
 const form = document.getElementById("testimonial-form");
-const cardsContainer = document.getElementById("testimonial-cards");
+const container = document.getElementById("testimonial-cards");
 
 const nameInput = document.getElementById("member-name");
 const messageInput = document.getElementById("testimonial-message");
@@ -56,56 +35,48 @@ form.addEventListener("submit", async (e) => {
   let imageURL = "";
 
   try {
-    // Upload image to Cloudinary (if provided)
+    // Upload image to Cloudinary
     if (imageFile) {
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      formData.append("upload_preset", UPLOAD_PRESET);
+      const fd = new FormData();
+      fd.append("file", imageFile);
+      fd.append("upload_preset", UPLOAD_PRESET);
 
-      const response = await fetch(
+      const res = await fetch(
         `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        {
-          method: "POST",
-          body: formData
-        }
+        { method: "POST", body: fd }
       );
 
-      const data = await response.json();
-      imageURL = data.secure_url;
+      const img = await res.json();
+      imageURL = img.secure_url;
     }
 
-    // Save testimony to Firestore
-    await addDoc(collection(db, "testimonials"), {
-      name: name,
-      message: message,
-      imageURL: imageURL,
-      createdAt: serverTimestamp()
+    // Save testimony to Google Sheets
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({ name, message, imageURL })
     });
 
-    alert("🙏 Testimony submitted successfully!");
+    alert("🙏 Testimony submitted successfully");
     form.reset();
+    loadTestimonials();
 
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     alert("❌ Failed to submit testimony");
   }
 });
 
 // ================================
-// Display Testimonials (Live)
+// Load Testimonials (PERSISTENT)
 // ================================
-const q = query(
-  collection(db, "testimonials"),
-  orderBy("createdAt", "desc")
-);
+async function loadTestimonials() {
+  const res = await fetch(API_URL);
+  const data = await res.json();
 
-onSnapshot(q, (snapshot) => {
-  cardsContainer.innerHTML = "";
+  container.innerHTML = "";
 
-  snapshot.forEach((doc) => {
-    const t = doc.data();
-
-    cardsContainer.innerHTML += `
+  data.reverse().forEach(t => {
+    container.innerHTML += `
       <div class="col-md-4">
         <div class="testimonial-card">
           <div class="testimonial-header">
@@ -120,4 +91,7 @@ onSnapshot(q, (snapshot) => {
       </div>
     `;
   });
-});
+}
+
+// Load on page start
+loadTestimonials();
