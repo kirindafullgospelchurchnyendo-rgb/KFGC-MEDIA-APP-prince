@@ -1,5 +1,3 @@
-
-You said:
 // ================================
 // Cloudinary Config
 // ================================
@@ -44,7 +42,7 @@ form.addEventListener("submit", async (e) => {
       fd.append("upload_preset", UPLOAD_PRESET);
 
       const res = await fetch(
-        https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload,
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
         { method: "POST", body: fd }
       );
 
@@ -78,7 +76,7 @@ async function loadTestimonials() {
   container.innerHTML = "";
 
   data.reverse().forEach(t => {
-    container.innerHTML += 
+    container.innerHTML += `
       <div class="col-md-4">
         <div class="testimonial-card">
           <div class="testimonial-header">
@@ -91,10 +89,9 @@ async function loadTestimonials() {
           <p class="testimonial-message">"${t.message}"</p>
         </div>
       </div>
-    ;
+    `;
   });
 }
 
 // Load on page start
 loadTestimonials();
-
