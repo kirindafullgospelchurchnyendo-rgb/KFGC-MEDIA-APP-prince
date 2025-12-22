@@ -43,17 +43,27 @@ form.addEventListener("submit", async (e) => {
 
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        { method: "POST", body: fd }
+        {
+          method: "POST",
+          body: fd
+        }
       );
 
       const img = await res.json();
-      imageURL = img.secure_url;
+      imageURL = img.secure_url || "";
     }
 
     // Save testimony to Google Sheets
     await fetch(API_URL, {
       method: "POST",
-      body: JSON.stringify({ name, message, imageURL })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        message: message,
+        imageURL: imageURL
+      })
     });
 
     alert("🙏 Testimony submitted successfully");
@@ -70,27 +80,35 @@ form.addEventListener("submit", async (e) => {
 // Load Testimonials (PERSISTENT)
 // ================================
 async function loadTestimonials() {
-  const res = await fetch(API_URL);
-  const data = await res.json();
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
 
-  container.innerHTML = "";
+    container.innerHTML = "";
 
-  data.reverse().forEach(t => {
-    container.innerHTML += `
-      <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="testimonial-header">
-            <img src="${t.imageURL || 'default-user.png'}" alt="${t.name}">
-            <div>
-              <h5>${t.name}</h5>
-              <p>Church Member</p>
+    data.reverse().forEach(t => {
+      container.innerHTML += `
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img 
+                src="${t.imageURL ? t.imageURL : 'default-user.png'}"
+                alt="${t.name}"
+              >
+              <div>
+                <h5>${t.name}</h5>
+                <p>Church Member</p>
+              </div>
             </div>
+            <p class="testimonial-message">"${t.message}"</p>
           </div>
-          <p class="testimonial-message">"${t.message}"</p>
         </div>
-      </div>
-    `;
-  });
+      `;
+    });
+
+  } catch (err) {
+    console.error("Failed to load testimonials", err);
+  }
 }
 
 // Load on page start
