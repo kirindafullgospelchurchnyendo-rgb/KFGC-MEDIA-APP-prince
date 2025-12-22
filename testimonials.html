@@ -26,11 +26,7 @@
 
 <!-- Page Content -->
 <main class="container mt-4">
-    <div class="text-center mb-4">
-        
-        <h2>Hear What Our Members Say</h2>
-        <p>Stories of faith, growth, and community from our beloved members.</p>
-    </div>
+
 
     <!-- Testimonials Grid -->
     <div class="row" id="testimonial-cards">
@@ -47,32 +43,35 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="jane.jpg" alt="Jane Smith">
-                    <div>
-                        <h5>Nakato Sarah</h5>
-                        <p>Member since: Feb 2022</p>
-                    </div>
-                </div>
-                <p class="testimonial-message">"Joining the church has brought peace and joy to my life. The services are always uplifting, and the fellowship is truly special."</p>
-            </div>
-        </div>
-
-    <!-- Submit Testimonial Form -->
-    <div class="testimonial-form">
-        <h4>Submit Your Testimonial</h4>
-        <form id="testimonial-form" enctype="multipart/form-data">
-            <input type="text" id="member-name" placeholder="Your Name" required>
-            <textarea id="testimonial-message" placeholder="Share your experience..." required></textarea>
-            <input type="file" id="testimonial-image" accept="image/*">
-            <button type="submit" class="btn submit-btn">Submit Testimonial</button>
-        </form>
-    </div>
     <h4>THANK YOU FOR TESTIFYING TO THE LORD</h4>
 </main>
 
+    <div class="text-center mb-4">
+        
+        <h2>Hear What Our Members Say</h2>
+        <p>Stories of faith, growth, and community from our beloved members.</p>
+    </div>
+  <main class="wrapper">
+
+  <!-- SUBMIT FORM -->
+  <section class="form-card">
+    <h2>🙏 Share Your Testimony</h2>
+
+    <form id="testimonial-form">
+      <input type="text" id="member-name" placeholder="Your Name" required>
+      <textarea id="testimonial-message" placeholder="Share what God has done..." required></textarea>
+      <input type="file" id="testimonial-image" accept="image/*">
+      <button type="submit">Submit Testimony</button>
+    </form>
+  </section>
+
+  <!-- TESTIMONIES -->
+  <section>
+    <h2 class="section-title">💬 Testimonies</h2>
+    <div id="testimonial-cards" class="cards"></div>
+  </section>
+
+</main>
 <!-- Footer -->
 <footer class="footer">
     <p>
