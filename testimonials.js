@@ -1,31 +1,3 @@
-
-    container.innerHTML = "";
-
-    data.reverse().forEach(t => {
-      container.innerHTML += `
-        <div class="col-md-4">
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <img 
-                src="${t.imageURL ? t.imageURL : 'default-user.png'}"
-                alt="${t.name}"
-              >
-              <div>
-                <h5>${t.name}</h5>
-                <p>Church Member</p>
-              </div>
-            </div>
-            <p class="testimonial-message">"${t.message}"</p>
-          </div>
-        </div>
-      `;
-    });
-
-
-
-
-
-
 const CLOUD_NAME = "dvnyyq3ru";
 const UPLOAD_PRESET = "xdapq0dq";
 const API_URL = "https://script.google.com/macros/s/AKfycbxlPtJuzw6bjTpN8iyh1r1t8dB5gWVJ7uwj7ppCb_i5Y3Z6mRRXhITZdVqdOOaRHVJG/exec";
