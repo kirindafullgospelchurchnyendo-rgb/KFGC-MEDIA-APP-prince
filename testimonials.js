@@ -130,4 +130,4 @@ async function sendReaction(testimonialId, type, button) {
     // Revert count if failed
     button.innerText = `${button.innerText.split(" ")[0]} ${currentCount}`;
   }
-              }
+      }
